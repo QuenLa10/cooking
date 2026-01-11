@@ -1,12 +1,13 @@
-# Développement d'une application web d'aide à la prospection
+# Développement d'une application web / jeu de recettes de cuisine 
 
 ## [](#contexte-du-projet)[](#contexte-du-projet)Contexte du projet
 
-TNS ([https://tnservices.fr/](https://tnservices.fr/)) est la junior entreprise de TELECOM Nancy, une association étudiante qui réalise des projets informatiques pour des clients externes. Dans le cadre de son développement, TNS souhaite créer une application web interne pour gérer la prospection commerciale et le suivi des projets. L'objectif est de faciliter la gestion des clients, des projets et des intervenants, tout en assurant la conformité avec le RGPD. En les aidant dans ce projet, vous les/vous aiderez à trouver des missions pour acquérir de l'expérience ! En plus, ce projet vous permettra de découvrir le développement web pour un cas concret et représentera un bon point dans votre CV. De plus, ils sont prêts à assurer un suivi pour vous aider à réussir ce projet !
+On est deux élèves de l'école Télécom Nancy, ayant envie de créer un projet. Pour cela, on s'est posé la question suivante : Qu'est-ce que qui nous embête dans la vie ? Une réponse : Le problème de cuisiner en tant qu'étudiant ! 
+Effectivement, on n'a jamais d'idées quant à ce qu'on va manger le soir, donc la flemme s'empare de soi et on cuisine toujours la même chose : des pâtes.  On souhaite ainsi créer une application web qui serait comme un jeu et qui permettrait de trouver et réaliser (ou même créer) des recettes facilement. L'objectif est d'augmenter de niveau en testant pleins de recettes différentes.
 
 ## [](#contexte-p%C3%A9dagogique)[](#contexte-p%C3%A9dagogique)Contexte pédagogique
 
-Ce projet vise à placer les élèves-ingénieurs en situation de développement complet d’un système informatique intégrant :
+Ce projet vise à nous placer en situation de développement complet d’un site / d'une application intégrant :
 
 - la conception algorithmique,
 - la modélisation et l’implémentation de données,
@@ -43,36 +44,32 @@ Volet Web :
 - Connecter le front-end à l’API.
 - Déployer et tester une application web fonctionnelle.
 
-## [](#p%C3%A9rim%C3%A8tre-fonctionnel)[](#p%C3%A9rim%C3%A8tre-fonctionnel)Périmètre fonctionnel
+## [](#p%C3%A9rim%C3%A8tre-fonctionnel)[](#p%C3%A9rim%C3%A8tre-fonctionnel)Périmètre fonctionnel (Admin)
 
-|Fonctionnalité|Description synthétique|Difficulté|Obligation|
-|---|---|---|---|
-|Gestion des études|Créer un projet lié à un client avec statut et dates|🟢 Facile|✅ Obligatoire|
-|Gestion des intervenants|Créer / lire / modifier / supprimer un intervenant (CRUD/RGPD)|🟢 Facile|✅ Obligatoire|
-|Tableau de bord|Page d'accueil listant les clients et l'état des projets|🟢 Facile|✅ Obligatoire|
-|Gestion de projets|Création de jalons pour un projet avec dates et statut (format Kanban)|🟢 Facile|✅ Obligatoire|
-|Gestion des clients/prospects|Créer / lire / modifier / supprimer un client (CRUD/RGPD) avec champs d'informations le plus exhaustif possible (nom, contact, secteur...) + historique de contact avec lui (qui, quand ?)|🟢 Facile|✅ Obligatoire|
-|Historique des missions réalisées|Une page qui permet d'accéder à toutes les missions que la junior a réalisées avec les documents correspondants (import, export CSV)|🟢 Facile|✅ Obligatoire|
-|Authentification simple|Formulaire de connexion avec gestion de session (mots de passe en clair autorisés)|🟢 Facile|✅ Obligatoire|
-|Historique des interactions|Associer plusieurs interactions textuelles datées à un client|🟡 Moyen|✅ Obligatoire|
-|Import/Export CSV de clients|Ajouter plusieurs clients via un fichier CSV ou les exporter|🟡 Moyen|✅ Obligatoire|
-|Tests unitaires|Couvrir les fonctionnalités principales avec des tests automatisés (pytest)|🟡 Moyen|✅ Obligatoire|
-|Profil d'intervenant|Page personnelle avec documents, compétences et disponibilité|🟡 Moyen|✅ Obligatoire|
-|Algorithme de matching|Suggérer des intervenants pour un projet en fonction de leurs compétences et portfolio|🟡 Moyen|✅ Obligatoire|
-|Recherche texte|Champ de recherche filtrant les clients par nom ou secteur|🟡 Moyen|🔸 Optionnel|
-|Gestion des autorisations|Chaque compte a un rôle associé qui donne certaines permissions ou non (Président, Chef de projet, DSI...)|🟡 Moyen|🔸 Optionnel|
-|Authentification renforcée|Mots de passe chiffrés|🟢 Facile|✅ Obligatoire|
-|Page RGPD|Page donnant les données stockées sur un client/intervenant avec possibilité de suppression ou portabilité|🟡 Moyen|🔸 Optionnel|
-|Page tinder-like pour savoir quelle prochaine entreprise contacter|Interface utilisateur pour "swiper" entre les entreprises suggérées par l'algorithme de matching et choisir celles à contacter|🟡 Moyen|🔸 Optionnel|
-|Ajout de clients dans la BDD par API|Recherche de prospects potentiels avec une API qui récupère les données de l'entreprise (OpenStreetMap... attention aux licences d'usage commercial)|🔴 Difficile|⭕ Bonus|
-|Utilisation de PostgreSQL|Passage de SQLite à PostgreSQL pour la base de données|🟡 Moyen|⭕ Bonus|
-|Intégration continue|Mise en place d'un pipeline CI/CD (GitHub Actions, GitLab CI) pour tests et déploiement automatisé|🟡 Moyen|⭕ Bonus|
-|Docker|Conteneurisation de l'application avec Docker pour faciliter le déploiement|🟡 Moyen|⭕ Bonus|
-|Page de statistiques|Graphiques sur l'activité de la junior (nombre de clients, projets en cours, répartition par secteur...)|🟡 Moyen|⭕ Bonus|
-|Authentification Google OAuth|Connexion via Google Workspace|🔴 Difficile|⭕ Bonus|
-|Utilisation de Google Drive|Stocker les documents liés aux clients et aux intervenants sur Google Drive (API Google Drive)|🔴 Difficile|⭕ Bonus|
-|Utilisation avancée de SQLAlchemy|Utilisation de fonctionnalités avancées de SQLAlchemy (migrations, relations complexes, requêtes optimisées)|🔴 Difficile|⭕ Bonus|
-|Carte interactive (Leaflet)|Affichage des clients sur une carte en utilisant latitude / longitude|🔴 Difficile|⭕ Bonus|
+|          **Fonctionnalité**          |                                            **Description synthétique**                                            | **Difficulté** | **Obligation** |
+| :----------------------------------: | :---------------------------------------------------------------------------------------------------------------: | :------------: | :------------: |
+|     **Gestion des Ingrédients**      |      CRUD (Créer, Lire, Modifier, Supprimer) la liste des ingrédients de référence (ex: "Tomate", "Pâtes").       |       🟢       |       ✅        |
+|       **Gestion des Recettes**       |                Interface pour ajouter/éditer une recette (titre, temps, étapes, ingrédients liés).                |       🟡       |       ✅        |
+|     **Gestion des Utilisateurs**     |                        Voir la liste des inscrits, pouvoir bannir ou supprimer un compte.                         |       🟢       |       ✅        |
+|     **Algorithme de "Matching"**     |                  Moteur de recherche : Entrer des ingrédients -> Sortir les recettes possibles.                   |       🔴       |       ✅        |
+|      **Système de calcul d'XP**      | Logique backend : À la validation d'une recette, ajouter X points au profil et vérifier si un niveau est franchi. |       🟡       |       ✅        |
+| **Système de Badges (Achievements)** |             Déclencheur (Trigger) : Si "compteur tomate" > 10, alors débloquer le badge "Tomatovore".             |       🔴       |       🔸       |
+|      **API REST (Si demandé)**       |             Créer les endpoints (URL) pour envoyer les données en format JSON (ex: `/api/recettes`).              |       🟡       |       ✅        |
+
+
+## [](#p%C3%A9rim%C3%A8tre-fonctionnel)[](#p%C3%A9rim%C3%A8tre-fonctionnel)Périmètre fonctionnel (User)
+
+|         **Fonctionnalité**         |                                    **Description synthétique**                                     | **Difficulté** | **Obligation** |
+| :--------------------------------: | :------------------------------------------------------------------------------------------------: | :------------: | :------------: |
+|        **Authentification**        |                          Inscription, Connexion, Déconnexion (Sécurisée).                          |       🟡       |       ✅        |
+|    **Tableau de bord (Profil)**    |          Affichage de l'avatar, de la barre d'XP, du niveau actuel et des badges obtenus.          |       🟢       |       ✅        |
+|     **Catalogue de recettes**      |             Liste des recettes avec filtres (Saison, Temps, Difficulté) et pagination.             |       🟢       |       ✅        |
+|   **Fiche Recette "Pas à pas"**    |           Affichage clair d'une recette unique avec les cases à cocher pour les étapes.            |       🟢       |       ✅        |
+|       **Recherche "Frigo"**        |          Champ de recherche où l'on tape ses restes pour trouver une recette compatible.           |       🔴       |       ✅        |
+| **Action "Cuisiner" (Validation)** |        Bouton "J'ai cuisiné ça" -> Upload d'une photo (ou simple validation) -> Gain d'XP.         |       🟡       |       ✅        |
+|   **Création de recette (UGC)**    | Formulaire pour qu'un utilisateur propose sa propre recette (mise en attente de validation admin). |       🔴       |       🔸       |
+|       **Mode "Mario Maker"**       |            Affichage distinct : "Recettes Officielles" vs "Recettes de la Communauté".             |       🟡       |       ⭕        |
+|         **Génération PDF**         |                          Bouton pour télécharger la fiche recette en PDF.                          |       🔴       |       🔸       |
 
 ### [](#l%C3%A9gende-des-niveaux-de-difficult%C3%A9)[](#l%C3%A9gende-des-niveaux-de-difficult%C3%A9)Légende des niveaux de difficulté
 
@@ -93,8 +90,6 @@ Volet Web :
 
 **Interface** : HTML/CSS minimal. JavaScript optionnel.
 
-**Gestion des données test** : minimum 20 clients et 10 interactions en base pour la démonstration.
-
 ## [](#jalons-indicatifs)[](#jalons-indicatifs)Jalons indicatifs
 
 **Jalon 1 : Mise en place et bases**
@@ -102,21 +97,32 @@ Volet Web :
 - Objectifs : Formation Flask, dépôt Git, authentification simple, modélisation BDD pour clients/prospects.
 - Livrables : Application de base fonctionnelle avec base de données pour clients contactés.
 
-**Jalon 2 : Gestion clients et projets**
+**Jalon 2 : Affichage des recette
 
-- Objectifs : CRUD (_Create, Read, Update, Delete_) clients, projets, intervenants, historique...
+- Objectifs : CRUD (_Create, Read, Update, Delete_) pour créer les recettes, 
 - Livrables : Interfaces de gestion et tableau de bord.
 
-**Jalon 3 : Finalisation**
+**Jalon 3 : Création de compte**
 
-- Objectifs : Tests, fonctionnalités avancées, documentation.
-- Livrables : Application complète avec démo.
+- Objectifs : Système d'accomplissement, XP, propre compte
+- Livrables : Page de profil.
 
-## [](#d%C3%A9veloppement-incr%C3%A9mental)[](#d%C3%A9veloppement-incr%C3%A9mental)Développement incrémental
+**Jalon 4 : Recherche de recettes**
 
-Il est vivement recommandé à ce que le groupe adopte une stratégie de développement incrémentale.
+- Objectifs : Recherche d'une recette selon critères
+- Livrables : Page de recherche intelligente
 
-L'idée est donc de planifier et de définir des "incréments" ou de petites unités fonctionnelles du jeu (ou de ces composants). Cela permet de se concentrer sur une petite section du jeu à la fois et d'être toujours capable d'avoir une version fonctionnelle du jeu complet. Cela permet également d'éviter l'effet tunnel : de commencer le développement de beaucoup de fonctionnalités et de n'avoir finalement rien ou pas grand-chose de fonctionnel à montrer à la fin du projet.
+**Jalon 5 : Affichage personnalisé**
+
+- Objectifs : Affichage type jeu
+- Livrables : Jeu fonctionnel
+
+**Jalon 6 : Création/Publication de recette**
+
+- Objectifs : Créer ses propres recettes, et les publier (à part du jeu principal)
+- Livrables : Page des recettes de tous
+
+
 
 ## [](#rendu-final)[](#rendu-final)Rendu final
 
@@ -132,46 +138,4 @@ L'idée est donc de planifier et de définir des "incréments" ou de petites uni
 
 **Tous ces éléments seront déposés de manière organisée dans le dépôt git de votre projet.**
 
-## [](#soutenance-et-date-de-rendu)[](#soutenance-et-date-de-rendu)Soutenance et date de rendu
-
-Le projet est à rendre pour le **mercredi 7 janvier 2026** à 22 heures au plus tard.
-
-Des soutenances de groupes de projet seront organisées la deuxième ou troisième semaine de janvier.
-
-Votre projet fera l'objet d'une démonstration devant un jury composé d'au moins 2 membres de l’équipe pédagogique (et peut-être d'un membre de TNS). Durant cette soutenance, vous serez jugés sur votre démonstration de l'application et votre capacité à expliquer votre projet et son fonctionnement. Chaque membre du groupe devra être présent lors de soutenance et **participer activement**.
-
-_Toute personne ne se présentant pas à la soutenance sera considérée comme démissionnaire de l'UE et en conséquence, ne pourra pas la valider pour l’année universitaire 2025-2026._
-
-Il est attendu que chaque membre du groupe ait contribué **à plusieurs parties fonctionnelles du code** (il ne s'agit pas d'avoir uniquement corrigé quelques lignes par ci et par là).
-
-Lors de la soutenance, il est attendu :
-
-- que le groupe réalise une démonstration fonctionnelle de l'application qu'il a réalisée sur une dizaine de minutes. L'objectif est de présenter les fonctionnalités et les spécificités de votre application. Il est conseillé de scénariser cette démonstration (pas une pièce de théâtre, mais de dérouler un scénario utilisateur) ;
-- puis qu'il présente (supports à l'appui) en 5 minutes maximum la gestion de projet (organisation/répartition des tâches, planning prévisionnel/réalisé).
-
-Cette démonstration/présentation sera suivie d'un échange avec le jury pendant environ 10 minutes.
-
-En résumé : un créneau de 30 minutes sera dédié à chaque projet :
-
-- 10 min de démonstration de votre réalisation
-- 5 min de présentation de la gestion de projet
-- 10 min de questions
-- 5 min délibérations.
-
-## [](#crit%C3%A8res-d%C3%A9valuation)[](#crit%C3%A8res-d%C3%A9valuation)Critères d'évaluation
-
-Pour l'évaluation, les points suivants seront pris en considération :
-
-- Respect du périmètre obligatoire et qualité de l'implémentation.
-- Qualité (adéquation, correction, performance, etc.) des algorithmes mis en œuvre.
-- Qualité du modèle relationnel proposé et respect de la 3ème forme normale.
-- Respect des bonnes pratiques de programmation (structure du code, lisibilité, commentaires, structure cohérente).
-- Tests et gestion des erreurs (robustesse de l’application).
-- Valeur ajoutée via les fonctionnalités optionnelles choisies.
-- Gestion de projet (répartition des tâches, utilisation d'un tableau Kanban ou équivalent).
-- Qualité de la démonstration finale et de la documentation fournie.
-
-## [](#mieux-comprendre-le-projet)[](#mieux-comprendre-le-projet)Mieux comprendre le projet
-
-Pour mieux comprendre les besoins et le contexte, vous pouvez contacter l'équipe pédagogique ou les membres de TNS pour leur poser des questions à tout moment. N'hésitez pas à demander des précisions sur les fonctionnalités ou à proposer des idées d'amélioration. Vous pouvez échanger avec nTNSous dans le local, par mail ou par Discord ([https://discord.gg/gHEfQrUdkg](https://discord.gg/gHEfQrUdkg)). L'équipe est là pour vous aider à réussir ce projet !
 
