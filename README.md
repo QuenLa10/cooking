@@ -175,19 +175,3 @@ Pour l'évaluation, les points suivants seront pris en considération :
 
 Pour mieux comprendre les besoins et le contexte, vous pouvez contacter l'équipe pédagogique ou les membres de TNS pour leur poser des questions à tout moment. N'hésitez pas à demander des précisions sur les fonctionnalités ou à proposer des idées d'amélioration. Vous pouvez échanger avec nTNSous dans le local, par mail ou par Discord ([https://discord.gg/gHEfQrUdkg](https://discord.gg/gHEfQrUdkg)). L'équipe est là pour vous aider à réussir ce projet !
 
-## [](#fraude-tricherie-et-plagiat)[](#fraude-tricherie-et-plagiat)Fraude, tricherie et plagiat
-
-Ne trichez pas ! Ne copiez pas ! Ne plagiez pas ! Si vous le faites, vous serez lourdement sanctionnés. Nous ne ferons pas de distinction entre copieur et copié. Vous n'avez pas de (bonnes) raisons de copier. De même, vous ne devez pas utiliser de solution clé en main trouvée sur internet.
-
-Par tricher, nous entendons notamment :
-
-- Rendre le travail d’un collègue en y apposant votre nom ;
-- Obtenir un code, une solution par un moteur de recherche (ou une IA) et la rendre sous votre nom ;
-- Récupérer du code et ne changer que les noms de variables et fonctions ou leur ordre avant de les présenter sous votre nom
-- Autoriser consciemment ou inconsciemment un collègue à s'approprier votre travail personnel. Assurez-vous particulièrement que votre projet et ses différentes copies locales ne soient lisibles que par vous et les membres de votre groupe.
-
-Nous encourageons les séances de _brainstorming_ et de discussion entre les élèves sur le projet. C’est une démarche naturelle et saine comme vous la rencontrerez dans votre vie professionnelle. Si les réflexions communes sont fortement recommandées, vous ne pouvez rendre que du code et des documents écrits par vous-même. Vous indiquerez notamment dans votre rapport toutes vos sources (comme les sites internet que vous auriez consultés), en indiquant brièvement ce que vous en avez retenu. Il est quasi certain que nous détections les tricheries. En effet, les rapports et les codes sont systématiquement soumis à des outils de détection de plagiat et de copie. Il existe spécifiquement des outils de détection de manipulation de code extraordinaire mis à disposition par l’Université de Stanford, tels que `MOSS` ([https://theory.stanford.edu/~aiken/moss/](https://theory.stanford.edu/~aiken/moss/)) ou `compare50` ([https://cs50.readthedocs.io/projects/compare50/](https://cs50.readthedocs.io/projects/compare50/)). De plus, chacun a son propre style de programmation et personne ne développe la même chose de la même manière.
-
-Puisqu'il s'agit d'un projet réalisé dans le cadre de cours avancés de programmation, nous nous attendons à ce que vous soyez capable d'apprendre à déboguer des programmes par vous-même. Par exemple, demander à un autre élève de regarder directement votre code et de donner des suggestions d'amélioration commence à devenir un peu délicat au niveau éthique.
-
-Si vous rencontrez des difficultés pour terminer une tâche, veuillez contacter l'un de vos enseignants afin que nous puissions vous aider. Nous préférons de loin passer du temps à vous aider plutôt que de traiter des cas de fraudes.
