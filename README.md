@@ -1,4 +1,13 @@
 # Développement d'une application web / jeu de recettes de cuisine 
+{
+  "files.exclude": {
+    "**/.gitignore": true,
+    "**/.obsidian": true,
+    "**/venv": true,
+    "**/__pycache__": true,
+    "**/.vscode": true,
+  }
+}
 
 ## [](#contexte-du-projet)[](#contexte-du-projet)Contexte du projet
 
