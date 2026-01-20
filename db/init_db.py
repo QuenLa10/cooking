@@ -15,6 +15,7 @@ def create_connection():
 def create_tables(con):
     cursor = con.cursor()
 
+    #Table UTILISATEURS
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS utilisateurs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,6 +30,7 @@ def create_tables(con):
     );
     """)
 
+    #Table SAISONS
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS saisons (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,6 +38,7 @@ def create_tables(con):
     );
     """)
 
+    #Table INGREDIENTS
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS ingredients (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -45,6 +48,7 @@ def create_tables(con):
     );
     """)
 
+    #Table DIFFICULTES
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS difficultes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -52,6 +56,7 @@ def create_tables(con):
     );
     """)
 
+    #Table RECETTES
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS recettes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -60,12 +65,14 @@ def create_tables(con):
         temps TIME,
         id_difficulte INT,
         id_auteur INT,
+        recompense_xp INT,
         date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (id_auteur) REFERENCES utilisateurs(id),
         FOREIGN KEY (id_difficulte) REFERENCES difficultes(id)
     );
     """)
 
+    #Table RECETTES_INGREDIENTS
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS recettes_ingredients (
         id_recette INT,
@@ -77,6 +84,7 @@ def create_tables(con):
     );
     """)
 
+    #Table UTILISATEURS_RECETTES
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS utilisateurs_recettes (
         id_utilisateur INT,
@@ -88,6 +96,7 @@ def create_tables(con):
     );
     """)
 
+    #Table ETAPES
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS etapes ( 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
