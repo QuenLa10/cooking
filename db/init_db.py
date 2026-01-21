@@ -1,7 +1,7 @@
 import sqlite3
 from pathlib import Path
 
-#__file__ contient le chemin du fichier en cours d'exécution
+# __file__ contient le chemin du fichier en cours d'exécution
 db = Path(__file__).parent / "cooking.db"
 
 def create_connection():
@@ -11,11 +11,11 @@ def create_connection():
     con.execute("PRAGMA foreign_keys = ON;")
     return con
 
-#On crée toutes les tables
+# On crée toutes les tables
 def create_tables(con):
     cursor = con.cursor()
 
-    #Table UTILISATEURS
+    # Table UTILISATEURS
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS utilisateurs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -30,7 +30,7 @@ def create_tables(con):
     );
     """)
 
-    #Table SAISONS
+    # Table SAISONS
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS saisons (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -38,7 +38,7 @@ def create_tables(con):
     );
     """)
 
-    #Table INGREDIENTS
+    # Table INGREDIENTS
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS ingredients (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,7 +48,7 @@ def create_tables(con):
     );
     """)
 
-    #Table DIFFICULTES
+    # Table DIFFICULTES
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS difficultes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -56,7 +56,7 @@ def create_tables(con):
     );
     """)
 
-    #Table RECETTES
+    # Table RECETTES
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS recettes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -72,7 +72,7 @@ def create_tables(con):
     );
     """)
 
-    #Table RECETTES_INGREDIENTS
+    # Table RECETTES_INGREDIENTS
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS recettes_ingredients (
         id_recette INT,
@@ -84,7 +84,7 @@ def create_tables(con):
     );
     """)
 
-    #Table UTILISATEURS_RECETTES
+    # Table UTILISATEURS_RECETTES
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS utilisateurs_recettes (
         id_utilisateur INT,
@@ -96,7 +96,7 @@ def create_tables(con):
     );
     """)
 
-    #Table ETAPES
+    # Table ETAPES
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS etapes ( 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -104,6 +104,25 @@ def create_tables(con):
         description TEXT,
         id_recette int,
         FOREIGN KEY (id_recette) REFERENCES recettes(id)                   
+    );
+    """)
+
+    # Table USTENSILES
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS ustensiles (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,               
+    nom VARCHAR(255) UNIQUE NOT NULL               
+    );
+    """)
+
+    # Table USTENSILES_RECETTES
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS ustensiles_recettes (
+    id_ustensile INT,
+    id_recette INT,  
+    PRIMARY KEY (id_ustensile, id_recette),
+    FOREIGN KEY (id_ustensile) REFERENCES ustensiles(id),
+    FOREIGN KEY (id_recette) REFERENCES recettes(id)             
     );
     """)
 
