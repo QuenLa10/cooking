@@ -7,7 +7,7 @@ db = Path(__file__).parent / "cooking.db"
 def create_connection():
     con = sqlite3.connect(db)
     
-    #Permet de faire bien fonctionner les relations (notamment les FK)
+    # Permet d'activer les contraintes de clés étrangères'
     con.execute("PRAGMA foreign_keys = ON;")
     return con
 
@@ -25,7 +25,7 @@ def create_tables(con):
         xp INTEGER DEFAULT 0,
         niveau INTEGER DEFAULT 1,
         est_admin BOOLEAN DEFAULT 0,
-        est_banned BOOLEAN DEFAULT 0,
+        est_banni BOOLEAN DEFAULT 0,
         date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     """)
@@ -89,7 +89,7 @@ def create_tables(con):
     CREATE TABLE IF NOT EXISTS utilisateurs_recettes (
         id_utilisateur INT,
         id_recette INT,
-        date_cuisine TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        date_cuisine TEXT,
         PRIMARY KEY (id_utilisateur, id_recette, date_cuisine),
         FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id),
         FOREIGN KEY (id_recette) REFERENCES recettes(id)
@@ -114,7 +114,7 @@ def create_tables(con):
     nom VARCHAR(255) UNIQUE NOT NULL               
     );
     """)
-
+    
     # Table USTENSILES_RECETTES
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS ustensiles_recettes (
