@@ -3,7 +3,6 @@ from pathlib import Path
 
 # __file__ contient le chemin du fichier en cours d'exécution
 db = Path(__file__).parent / "cooking.db"
-print(db)
 
 # On crée toutes les tables
 def create_tables():
