@@ -4,135 +4,31 @@ from pathlib import Path
 # __file__ contient le chemin du fichier en cours d'exécution
 db = Path(__file__).parent / "cooking.db"
 
-def create_connection():
-    con = sqlite3.connect(db)
-    
-    # Permet d'activer les contraintes de clés étrangères'
-    con.execute("PRAGMA foreign_keys = ON;")
-    return con
 
 # On crée toutes les tables
-def create_tables(con):
-    cursor = con.cursor()
+def create_tables():
 
-    # Table UTILISATEURS
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS utilisateurs (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nom VARCHAR(255) UNIQUE NOT NULL,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        mdp_hash TEXT NOT NULL,
-        xp INTEGER DEFAULT 0,
-        niveau INTEGER DEFAULT 1,
-        est_admin BOOLEAN DEFAULT 0,
-        est_banni BOOLEAN DEFAULT 0,
-        date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
-    """)
+    # Crée le fichier .db q'il n'existe pas
+    con = sqlite3.connect(db)
 
-    # Table SAISONS
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS saisons (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nom VARCHAR(255) UNIQUE NOT NULL
-    );
-    """)
-
-    # Table INGREDIENTS
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS ingredients (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nom VARCHAR(255) UNIQUE NOT NULL,
-        id_saison INT,
-        FOREIGN KEY (id_saison) REFERENCES saisons(id)
-    );
-    """)
-
-    # Table DIFFICULTES
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS difficultes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nom VARCHAR(255) UNIQUE NOT NULL
-    );
-    """)
-
-    # Table RECETTES
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS recettes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        titre TEXT NOT NULL,
-        description TEXT,
-        temps TIME,
-        id_difficulte INT,
-        id_auteur INT,
-        recompense_xp INT,
-        date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (id_auteur) REFERENCES utilisateurs(id),
-        FOREIGN KEY (id_difficulte) REFERENCES difficultes(id)
-    );
-    """)
-
-    # Table RECETTES_INGREDIENTS
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS recettes_ingredients (
-        id_recette INT,
-        id_ingredient INT,
-        quantite TEXT,
-        PRIMARY KEY (id_recette, id_ingredient),
-        FOREIGN KEY (id_recette) REFERENCES recettes(id),
-        FOREIGN KEY (id_ingredient) REFERENCES ingredients(id)
-    );
-    """)
-
-    # Table UTILISATEURS_RECETTES
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS utilisateurs_recettes (
-        id_utilisateur INT,
-        id_recette INT,
-        date_cuisine TEXT,
-        PRIMARY KEY (id_utilisateur, id_recette, date_cuisine),
-        FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id),
-        FOREIGN KEY (id_recette) REFERENCES recettes(id)
-    );
-    """)
-
-    # Table ETAPES
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS etapes ( 
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        numero INT NOT NULL,
-        description TEXT,
-        id_recette int,
-        FOREIGN KEY (id_recette) REFERENCES recettes(id)                   
-    );
-    """)
-
-    # Table USTENSILES
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS ustensiles (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,               
-    nom VARCHAR(255) UNIQUE NOT NULL               
-    );
-    """)
-    
-    # Table USTENSILES_RECETTES
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS ustensiles_recettes (
-    id_ustensile INT,
-    id_recette INT,  
-    PRIMARY KEY (id_ustensile, id_recette),
-    FOREIGN KEY (id_ustensile) REFERENCES ustensiles(id),
-    FOREIGN KEY (id_recette) REFERENCES recettes(id)             
-    );
-    """)
+    # On execute le fichier qui contient toutes les commandes pour créer les tables
+    with open("schema.sql") as f:
+        con.executescript(f.read())
 
     con.commit()
-
-def main():
-    con = create_connection()
-    create_tables(con)
     con.close()
-    print("Base de données initialisée avec succès")
+
+def fill_tables():
+
+    con = sqlite3.connect(db)
+
+    # On execute le fichier qui contient toutes les commandes pour remplir les tables
+    with open("seed.sql") as f:
+        con.executescript(f.read())
+
+    con.commit()
+    con.close()
 
 if __name__ == "__main__":
-    main()
+    create_tables()
+    fill_tables()

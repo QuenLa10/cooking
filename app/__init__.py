@@ -8,7 +8,6 @@ def create_app():
     # config
     app.config.from_object(Config)
 
-
     # blueprints
     from .routes.auth import auth_bp
     from .routes.recipes import recipes_bp
