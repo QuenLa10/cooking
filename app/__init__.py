@@ -1,14 +1,24 @@
 import flask
 from flask import Flask
-from app.config import Config
+from .config import Config
+from .db import close_db
 
 def create_app():
+
+    # On crée l'app, qui contient les routes, configuration etc
     app = Flask(__name__)
 
-    # config
+
+    # config car une app a besoin du mode debug, clé secrète, chemin bd etc
+    # Flask stocke ceci dans app.config
+    # Ici, Flask lit la classe et copie ses variables dedans
     app.config.from_object(Config)
 
-    # blueprints
+    # Flask va appeler close_db() automatiquement à la fin de chaque requête
+    app.teardown_appcontext(close_db)
+
+
+    # blueprints, chaque chose qu'on importe permet d'importer toutes les fonctions
     from .routes.auth import auth_bp
     from .routes.recipes import recipes_bp
     from .routes.profile import profile_bp
