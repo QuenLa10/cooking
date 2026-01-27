@@ -3,7 +3,7 @@ from pathlib import Path
 
 # __file__ contient le chemin du fichier en cours d'exécution
 db = Path(__file__).parent / "cooking.db"
-
+print(db)
 
 # On crée toutes les tables
 def create_tables():
@@ -31,4 +31,6 @@ def fill_tables():
 
 if __name__ == "__main__":
     create_tables()
+    print('La base de données a été initialisée.')
     fill_tables()
+    print('La base de données a été remplie avec les données test.')
