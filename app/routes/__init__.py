@@ -1,1 +1,1 @@
-#l'init qui sert à transformer en package, mais vide celui-ci
+# L'init qui sert à transformer en package, mais vide celui-ci
