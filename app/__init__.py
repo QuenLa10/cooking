@@ -1,7 +1,7 @@
 import flask
 from flask import Flask
 from .config import Config
-from .db import close_db
+from .database import close_db
 
 def create_app():
 
@@ -19,18 +19,16 @@ def create_app():
 
 
     # blueprints, chaque chose qu'on importe permet d'importer toutes les fonctions
+    from .routes.index import index_bp
     from .routes.auth import auth_bp
     from .routes.recipes import recipes_bp
     from .routes.profile import profile_bp
     
     # ajoute les routes à l'app
+    app.register_blueprint(index_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(recipes_bp)
     app.register_blueprint(profile_bp)
 
-    # route pour tester (temporaire)
-    @app.route("/")
-    def accueil() :
-        return "Projet Cooking !!!"
 
     return app
