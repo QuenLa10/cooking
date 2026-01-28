@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Zone que les pages enfants peuvent remplacer -->
+    <title>{% block title %}Mon site{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Site de cuisine</h1>
+        <nav> <!-- Liens de navigation -->
+            <a href = "/">Accueil</a>
+            <a href = "/recipes">Recettes</a>
+        </nav>
+    </header>
+
+    <main> <!-- Zone principale pour le contenu spécifique à chaque page -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer> <!-- Bandeau du bas -->
+        &copy; 2026 Mon site
+    </footer>
+</body>
+</html>
+
+<!-- 
+Le template enfant est alors :
+
+{% extends "base.html" %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+<p>Bienvenue sur la page d’accueil !</p>
+{% endblock %}
+-->
