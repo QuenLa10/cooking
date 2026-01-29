@@ -35,18 +35,18 @@ def ajout_recettes():
 
         base = get_db()
         cur = base.cursor()
+
         # Ajout des données de la recette à la DB
         cur.execute("""INSERT INTO recettes (titre, temps, id_difficulte, id_auteur, recompense_xp, date_creation)
                     VALUES (?, ?, ?, ?, ?, ?)""", (titre, temps, id_difficulte, id_auteur, recompense_xp, date_creation))
         base.commit()
+
         # Ajout des étapes de la recette à la DB
         id_recette = cur.execute("SELECT id FROM recettes WHERE titre=?", (titre,)).fetchone()[0]
         for i in range(len(etapes)):
             cur.execute("""INSERT INTO etapes (id_recette, n_etape, instructions)
                         VALUES (?, ?, ?);""", (id_recette, i+1, etapes[i]))
         base.commit()
-        close_db(None)
-
         return redirect("/")
 
     return render_template("ajout_recette.html", difficultes=difficultes)
