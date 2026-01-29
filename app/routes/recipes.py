@@ -5,6 +5,15 @@ from app.database import get_db, close_db
 recipes_bp = Blueprint("recipes", __name__)
 
 
+@recipes_bp.route("/Recettes")
+def affiche_recette():
+    base = get_db()
+    cur = base.cursor()
+    cur.execute("SELECT * FROM recettes")
+    recettes = cur.fetchall()
+    close_db(None)
+    return render_template("affiche_recettes.html", recettes=recettes)
+
 @recipes_bp.route("/AjoutRecette", methods=["GET", "POST"])
 def ajout_recettes():
 
@@ -44,5 +53,5 @@ def ajout_recettes():
 
 @recipes_bp.route("/ModifRecette", methods=["POST", "GET"])
 def modif_recette(id_recette):
-    
+    # à faire
     return render_template("modif_recette.html")
