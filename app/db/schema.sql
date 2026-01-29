@@ -1,7 +1,7 @@
 PRAGMA foreign_keys = ON;
 
 -- Table UTILISATEURS
-CREATE TABLE IF NOT EXISTS Utilisateurs (
+CREATE TABLE IF NOT EXISTS utilisateurs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nom VARCHAR(255) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -37,7 +37,6 @@ CREATE TABLE IF NOT EXISTS difficultes (
 CREATE TABLE IF NOT EXISTS recettes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         titre TEXT NOT NULL,
-        description TEXT,
         temps TIME,
         id_difficulte INT,
         id_auteur INT,
@@ -45,6 +44,14 @@ CREATE TABLE IF NOT EXISTS recettes (
         date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (id_auteur) REFERENCES utilisateurs(id),
         FOREIGN KEY (id_difficulte) REFERENCES difficultes(id)
+    );
+
+-- Table ETAPES
+CREATE TABLE  IF NOT EXISTS etapes (
+        id_recette INT PRIMARY KEY,
+        id_etape INTEGER PRIMARY KEY,
+        instructions TEXT NOT NULL,
+        FOREIGN KEY (id_recette) REFERENCES recettes(id)
     );
 
 -- Table RECETTES_INGREDIENTS

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Ajout Recettes{% endblock %}
+
+{% block content %}
+
+<h1>Formulaire pour ajouter une recette :</h1>
+
+<form method="POST">
+    Titre : <input type="text" name="titre" required><br>
+    Temps : <input type="time" name="temps" required><br>
+    Difficulté :
+    <select name="id_difficulte">
+        {% for def in difficultes %}
+            <option value="{{ def[0] }}" >{{ def[1] }}</option>
+        {% endfor %}
+        </select><br>
+    Recette : <br>
+    Auteur : <br>
+    Recompense : <input type="number" name="recompense_xp" required><br>
+</form>
+
+
+{% endblock %}
