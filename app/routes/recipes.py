@@ -4,17 +4,17 @@ from app.database import get_db, close_db
 
 recipes_bp = Blueprint("recipes", __name__)
 
-
-@recipes_bp.route("/Recettes")
-def affiche_recette():
+# Afficher la liste des recettes
+@recipes_bp.route("/recipes")
+def affiche_recettes():
     base = get_db()
     cur = base.cursor()
     cur.execute("SELECT * FROM recettes")
     recettes = cur.fetchall()
-    close_db(None)
     return render_template("affiche_recettes.html", recettes=recettes)
 
-@recipes_bp.route("/AjoutRecette", methods=["GET", "POST"])
+# Ajouter une recette
+@recipes_bp.route("/addrecipes", methods=["GET", "POST"])
 def ajout_recettes():
 
     # On récupère les choix de difficulté possibles (et leurs id)
@@ -22,8 +22,8 @@ def ajout_recettes():
     cur = base.cursor()
     cur.execute("SELECT * FROM difficultes;")
     difficultes = cur.fetchall()
-    close_db(None)
 
+    # Formulaire pour rentrer les données
     if request.method == "POST":
         titre = request.form["titre"]
         temps = request.form["temps"]
@@ -51,7 +51,7 @@ def ajout_recettes():
 
     return render_template("ajout_recette.html", difficultes=difficultes)
 
-@recipes_bp.route("/ModifRecette", methods=["POST", "GET"])
+@recipes_bp.route("/modif_recipe", methods=["POST", "GET"])
 def modif_recette(id_recette):
     # à faire
     return render_template("modif_recette.html")
