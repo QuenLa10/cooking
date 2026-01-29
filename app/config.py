@@ -6,5 +6,5 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Création d'un objet blueprint pour stocker des paramètres
 class Config:
     SECRET_KEY = "dev-secret-key"
-    DATABASE = BASE_DIR / "db" / "cooking.db"
+    DATABASE = BASE_DIR / "app" / "db" / "cooking.db"
     DEBUG = True

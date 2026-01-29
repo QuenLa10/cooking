@@ -1,38 +1,48 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 from datetime import datetime
 from app.database import get_db, close_db
-from pathlib import Path # provisoire
-import sqlite3 # provisoire
 
 recipes_bp = Blueprint("recipes", __name__)
 
-chemin_db = Path(__file__).resolve().parent.parent / "db" / "cooking.db" #c'est provisoire car les fonction get_db() et close_db() ne fonctionnent pas
 
-@recipes_bp.route("/AjoutRecette")
+@recipes_bp.route("/AjoutRecette", methods=["GET", "POST"])
 def ajout_recettes():
-    #base = get_db() #ça ne marche pas je sais pas pourquoi
-    base = sqlite3.connect(chemin_db) # provisoire
+
+    # On récupère les choix de difficulté possibles (et leurs id)
+    base = get_db()
     cur = base.cursor()
     cur.execute("SELECT * FROM difficultes;")
     difficultes = cur.fetchall()
-    base.close() # provisoire
-    #close_db()
-
-    print(difficultes)
+    close_db(None)
 
     if request.method == "POST":
         titre = request.form["titre"]
         temps = request.form["temps"]
+        etapes = request.form.getlist("etapes[]")
         id_difficulte = request.form["id_difficulte"]
         id_auteur = 1
         recompense_xp = request.form["recompense_xp"]
         date_creation = datetime.today().strftime("%Y-%m-%d")
 
-        #base = get_db() #ça ne marche pas je sais pas pourquoi
-        base = sqlite3.connect(chemin_db) # provisoire
+        base = get_db()
         cur = base.cursor()
-        cur.execute("")
-        base.close() # provisoire
-        #close_db()
+        # Ajout des données de la recette à la DB
+        cur.execute("""INSERT INTO recettes (titre, temps, id_difficulte, id_auteur, recompense_xp, date_creation)
+                    VALUES (?, ?, ?, ?, ?, ?)""", (titre, temps, id_difficulte, id_auteur, recompense_xp, date_creation))
+        base.commit()
+        # Ajout des étapes de la recette à la DB
+        id_recette = cur.execute("SELECT id FROM recettes WHERE titre=?", (titre,)).fetchone()[0]
+        for i in range(len(etapes)):
+            cur.execute("""INSERT INTO etapes (id_recette, n_etape, instructions)
+                        VALUES (?, ?, ?);""", (id_recette, i+1, etapes[i]))
+        base.commit()
+        close_db(None)
+
+        return redirect("/")
 
     return render_template("ajout_recette.html", difficultes=difficultes)
+
+@recipes_bp.route("/ModifRecette", methods=["POST", "GET"])
+def modif_recette(id_recette):
+    
+    return render_template("modif_recette.html")

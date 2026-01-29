@@ -45,7 +45,7 @@ function ajoutEtape() {
     const divEtape = document.createElement("div");
     divEtape.className = "etape";
     const label = document.createElement("span");
-    label.textContent = compteur_etape + ".";
+    label.textContent = compteur_etape + ". ";
     const input = document.createElement("input");
     input.type = "text"
     input.name = "etapes[]"
@@ -53,11 +53,8 @@ function ajoutEtape() {
     divEtape.appendChild(label);
     divEtape.appendChild(input);
     divEtape.appendChild(document.createElement("br"));
-    divEtape.appendChild(divEtape);
+    divEtapes.appendChild(divEtape);
 }
-</script>
-
-    }
 </script>
 
 
