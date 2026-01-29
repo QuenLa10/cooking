@@ -48,8 +48,9 @@ CREATE TABLE IF NOT EXISTS recettes (
 
 -- Table ETAPES
 CREATE TABLE  IF NOT EXISTS etapes (
-        id_recette INT PRIMARY KEY,
-        id_etape INTEGER PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id_recette INT,
+        n_etape INT,
         instructions TEXT NOT NULL,
         FOREIGN KEY (id_recette) REFERENCES recettes(id)
     );

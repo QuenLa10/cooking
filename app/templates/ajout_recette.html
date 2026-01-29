@@ -7,6 +7,7 @@
 <h1>Formulaire pour ajouter une recette :</h1>
 
 <form method="POST">
+
     Titre : <input type="text" name="titre" required><br>
     Temps : <input type="time" name="temps" required><br>
     Difficulté :
@@ -16,9 +17,56 @@
         {% endfor %}
         </select><br>
     Recette : <br>
+    <div id="etapes">
+        <div id="etape">
+            <span>1.</span>
+            <input type="text" name="etapes[]" required>
+            <br>
+        </div>
+    </div>
+    <button type="button" onclick="ajoutEtape()">
+        + Ajouter une étape
+    </button>
+    <br>
     Auteur : <br>
     Recompense : <input type="number" name="recompense_xp" required><br>
+
+    <br>
+    <button type="submit">Ajouter</button>
+
 </form>
+
+<!-- Partie en JS pour ajouter des étapes dynamiquement -->
+<script>
+let compteur_etape = 1;
+function ajoutEtape() {
+    compteur_etape++;
+    const divEtapes = document.getElementById("etapes");
+    const divEtape = document.createElement("div");
+    divEtape.className = "etape";
+    const label = document.createElement("span");
+    label.textContent = compteur_etape + ".";
+    const input = document.createElement("input");
+    input.type = "text"
+    input.name = "etapes[]"
+    input.required = true;
+    divEtape.appendChild(label);
+    divEtape.appendChild(input);
+    divEtape.appendChild(document.createElement("br"));
+    divEtape.appendChild(divEtape);
+}
+</script>
+
+    }
+</script>
+
+
+
+
+
+
+
+
 
 
 {% endblock %}
