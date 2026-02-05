@@ -5,18 +5,23 @@
 {% block content %}
 <h2>Liste des recettes</h2>
 
-<ul>
-{% for recette in recettes %}
-    <li>
-        <a href="{{ url_for('recipes.affiche_recette', id=recette[0]) }}">{{ recette[1] }}</a>
-        <br>
-        ⏱️ {{recette[2]}} | 🎚️ {{recette[3]}}
-        <form action="{{ url_for('recipes.supprime_recette', id=recette[0]) }}">
-            <button type="submit">🗑️</button>
-        </form>
-    </li>
-{% endfor %}
-</ul>
+{% if recettes %}
+    <ul>
+    {% for recette in recettes %}
+        <li>
+            <a href="{{ url_for('recipes.affiche_recette', id=recette[0]) }}">{{ recette[1] }}</a>
+            <br>
+            ⏱️ {{recette[2]}} | 🎚️ {{recette[3]}} <br>
+            XP : {{ recette[5] }}
+            <form action="{{ url_for('recipes.supprime_recette', id=recette[0]) }}">
+                <button type="submit">🗑️</button>
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+<p>Pas de recettes pour le moment</p>
+{% endif %}
 
 <br>
 <form action="/add_recipe">

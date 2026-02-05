@@ -11,6 +11,7 @@ def liste_recettes():
     cur = base.cursor()
     cur.execute("SELECT * FROM recettes")
     recettes = cur.fetchall()
+    return render_template('liste_recettes.html', recettes=recettes)
     
 # Afficher une recette
 @recipes_bp.route("/recipes/<int:id>")
