@@ -97,7 +97,7 @@ Volet Web :
 - Objectifs : Formation Flask, dépôt Git, authentification simple, modélisation BDD pour clients/prospects.
 - Livrables : Application de base fonctionnelle avec base de données pour clients contactés.
 
-**Jalon 2 : Affichage des recette
+**Jalon 2 : Affichage des recette**
 
 - Objectifs : CRUD (_Create, Read, Update, Delete_) pour créer les recettes, 
 - Livrables : Interfaces de gestion et tableau de bord.
