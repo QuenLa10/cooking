@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+<h2>{{ recette[1] }}</h2>
+
+<p>
+    {% for etape in etapes %}
+    <b>{{etape[1]}}.</b> {{etape[2]}}
+    <br>
+    {% endfor %}
+</p>
+
+
+
+{% endblock %}
