@@ -1,39 +1,44 @@
 PRAGMA foreign_keys = ON;
 
 -- Table UTILISATEURS
+DROP TABLE IF EXISTS utilisateurs ;
 CREATE TABLE IF NOT EXISTS utilisateurs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nom VARCHAR(255) UNIQUE NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    mdp_hash TEXT NOT NULL,
-    xp INTEGER DEFAULT 0,
-    niveau INTEGER DEFAULT 1,
-    est_admin BOOLEAN DEFAULT 0,
-    est_banni BOOLEAN DEFAULT 0,
-    date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nom VARCHAR(255) UNIQUE NOT NULL,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        mdp_hash TEXT NOT NULL,
+        xp INTEGER DEFAULT 0,
+        niveau INTEGER DEFAULT 1,
+        est_admin BOOLEAN DEFAULT 0,
+        est_banni BOOLEAN DEFAULT 0,
+        date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
 --  Table SAISONS
+DROP TABLE IF EXISTS saisons ;
 CREATE TABLE IF NOT EXISTS saisons (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nom VARCHAR(255) UNIQUE NOT NULL
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nom VARCHAR(255) UNIQUE NOT NULL
     );
 
 --  Table INGREDIENTS
+DROP TABLE IF EXISTS ingredients ;
 CREATE TABLE IF NOT EXISTS ingredients (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nom VARCHAR(255) UNIQUE NOT NULL,
-    id_saison INT,
-    FOREIGN KEY (id_saison) REFERENCES saisons(id)
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nom VARCHAR(255) UNIQUE NOT NULL,
+        id_saison INT,
+        FOREIGN KEY (id_saison) REFERENCES saisons(id)
     );
 
 --  Table DIFFICULTES
+DROP TABLE IF EXISTS difficultes ;
 CREATE TABLE IF NOT EXISTS difficultes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nom VARCHAR(255) UNIQUE NOT NULL
     );
 
 --  Table RECETTES
+DROP TABLE IF EXISTS recettes ;
 CREATE TABLE IF NOT EXISTS recettes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         titre TEXT NOT NULL,
@@ -48,6 +53,7 @@ CREATE TABLE IF NOT EXISTS recettes (
 
 
 -- Table RECETTES_INGREDIENTS
+DROP TABLE IF EXISTS ingredients ;
 CREATE TABLE IF NOT EXISTS recettes_ingredients (
         id_recette INT,
         id_ingredient INT,
@@ -58,6 +64,7 @@ CREATE TABLE IF NOT EXISTS recettes_ingredients (
     );
 
 --  Table UTILISATEURS_RECETTES
+DROP TABLE IF EXISTS utilisateurs_recettes ;
 CREATE TABLE IF NOT EXISTS utilisateurs_recettes (
         id_utilisateur INT,
         id_recette INT,
@@ -68,20 +75,30 @@ CREATE TABLE IF NOT EXISTS utilisateurs_recettes (
     );
 
 --  Table ETAPES
+DROP TABLE IF EXISTS etapes ;
 CREATE TABLE IF NOT EXISTS etapes ( 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         numero INT NOT NULL,
         description TEXT,
-        id_recette int,
+        id_recette INT,
         FOREIGN KEY (id_recette) REFERENCES recettes(id)                   
     );
 
 --  Table USTENSILES
+DROP TABLE IF EXISTS ustensiles ;
+CREATE TABLE IF NOT EXISTS ustensiles (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nom VARCHAR(255) UNIQUE NOT NULL           
+    );
+
+
+--  Table USTENSILES_RECETTES
+DROP TABLE IF EXISTS ustensiles_recettes ;
 CREATE TABLE IF NOT EXISTS ustensiles_recettes (
-    id_ustensile INT,
-    id_recette INT,  
-    PRIMARY KEY (id_ustensile, id_recette),
-    FOREIGN KEY (id_ustensile) REFERENCES ustensiles(id),
-    FOREIGN KEY (id_recette) REFERENCES recettes(id)             
+        id_ustensile INT,
+        id_recette INT,  
+        PRIMARY KEY (id_ustensile, id_recette),
+        FOREIGN KEY (id_ustensile) REFERENCES ustensiles(id),
+        FOREIGN KEY (id_recette) REFERENCES recettes(id)             
     );
 

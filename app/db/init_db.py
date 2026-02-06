@@ -11,7 +11,7 @@ def create_tables():
     con = sqlite3.connect(db)
 
     # On execute le fichier qui contient toutes les commandes pour créer les tables
-    with open("schema.sql") as f:
+    with open(Path(__file__).parent / "schema.sql") as f:
         con.executescript(f.read())
 
     con.commit()
@@ -22,7 +22,7 @@ def fill_tables():
     con = sqlite3.connect(db)
 
     # On execute le fichier qui contient toutes les commandes pour remplir les tables
-    with open("seed.sql") as f:
+    with open(Path(__file__).parent / "seed.sql") as f:
         con.executescript(f.read())
 
     con.commit()
