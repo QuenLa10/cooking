@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from datetime import datetime
-from app.database import get_db, close_db
+from app.database import get_db
 
 recipes_bp = Blueprint("recipes", __name__)
 

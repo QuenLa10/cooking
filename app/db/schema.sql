@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS utilisateurs ;
 -- Table UTILISATEURS
 CREATE TABLE utilisateurs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nom VARCHAR(255) UNIQUE NOT NULL,
+        identifiant VARCHAR(255) UNIQUE NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         mdp_hash TEXT NOT NULL,
         xp INTEGER DEFAULT 0,
