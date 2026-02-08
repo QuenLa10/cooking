@@ -1,11 +1,13 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from datetime import datetime
 from app.database import get_db
+from app.routes.decorator import login_required
 
 recipes_bp = Blueprint("recipes", __name__)
 
 # Afficher la liste des recette
 @recipes_bp.route("/recipes")
+@login_required
 def liste_recettes():
     base = get_db()
     cur = base.cursor()
@@ -15,6 +17,7 @@ def liste_recettes():
     
 # Afficher une recette
 @recipes_bp.route("/recipes/<int:id>")
+@login_required
 def affiche_recette(id):
     base = get_db()
     cur = base.cursor()
@@ -26,6 +29,7 @@ def affiche_recette(id):
 
 # Ajouter une recette
 @recipes_bp.route("/add_recipe", methods=["GET", "POST"])
+@login_required
 def ajout_recettes():
 
     # On récupère les choix de difficulté possibles (et leurs id)
@@ -61,11 +65,13 @@ def ajout_recettes():
     return render_template("ajout_recette.html", difficultes=difficultes)
 
 @recipes_bp.route("/update_recipe/<int:id>", methods=["POST", "GET"])
+@login_required
 def modif_recette(id):
     # à faire
     return render_template("modif_recette.html")
 
 @recipes_bp.route("/delete_recipe/<int:id>")
+@login_required
 def supprime_recette(id):
     base = get_db()
     cur = base.cursor()

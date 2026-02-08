@@ -51,8 +51,8 @@ def signup() :
         base = get_db()
         cur = base.cursor()
         cur.execute("SELECT identifiant FROM utilisateurs WHERE identifiant = ?", (identifiant,))
-        cur.execute("SELECT email FROM utilisateurs WHERE email = ?", (email,))
         autre_identifiant = cur.fetchone()
+        cur.execute("SELECT email FROM utilisateurs WHERE email = ?", (email,))
         autre_email = cur.fetchone()
 
         # si l'identifiant existe déjà

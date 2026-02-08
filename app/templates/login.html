@@ -1,20 +1,36 @@
-{% extends "base.html" %}
-
-{% block title %}Accueil{% endblock %}
-
-{% block content %}
-
-<h2>Connexion</h2>
-
-<form method="POST">
-
-    Identifiant : <input type="text" name="identifiant" required><br>
-    Email : <input type="text" name="email" required><br>
-    Mot de passe : <input type="text" name="mdp" required><br>
-    <button type="submit">Se connecter</button>
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Lien vers le css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='./styles.css') }}">
+    <title>cooking</title>
+</head>
+<body>
     
-</form>
+    <h2>Connexion</h2>
 
-<a href="/signup">Je n'ai pas encore de compte.</a>
+    <form method="POST">
 
-{% endblock %}
+        Identifiant : <input type="text" name="identifiant" required><br>
+        Mot de passe : <input type="password" name="mdp" required><br>
+        <button type="submit">Se connecter</button><br>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+                {% for msg in messages %}
+                {{ msg }} <br>
+                {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+    </form>
+
+    <a href="/signup">Je n'ai pas encore de compte.</a>
+
+    <footer> <!-- Bandeau du bas -->
+        &copy; 2026 Mon site
+    </footer>
+</body>
+</html>
