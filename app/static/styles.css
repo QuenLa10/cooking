@@ -27,3 +27,50 @@ body {
 .liens a:hover {
     color: #ffffff;
 }
+
+/* Bas de page */
+footer {
+    position: absolute;
+    bottom: 0;
+}
+
+/* liste des recettes */
+.liste-recettes {
+    display: flex;
+    flex-wrap: wrap; /*retour à la ligne quand il n'y a plus de place*/
+}
+
+.liste-recette {
+    background-color: white;
+    width: 220px;
+    padding: 15px;
+    border-radius: 15px;
+    overflow-wrap: break-word;
+    color: white;
+    overflow: hidden;
+    position: relative;
+    margin: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.liste-recette::before { /*pour assombrir l'image*/
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--image-url);
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6);
+    z-index: 0;
+}
+
+.liste-recette * { /*contenu sur l'image*/
+    position: relative;
+    z-index: 1;
+}
+
+.liste-recette:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}

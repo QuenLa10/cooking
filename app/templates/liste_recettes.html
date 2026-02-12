@@ -6,19 +6,19 @@
 <h2>Liste des recettes</h2>
 
 {% if recettes %}
-    <ul>
+    <div class="liste-recettes">
     {% for recette in recettes %}
-        <li>
+        <div class="liste-recette"
+            style="--image-url: url('{{ url_for('static', filename='images/' ~ recette[0] ~ '.jpg') }}')">
             <a href="{{ url_for('recipes.affiche_recette', id=recette[0]) }}">{{ recette[1] }}</a>
-            <br>
-            ⏱️ {{recette[2]}} | 🎚️ {{recette[3]}} <br>
-            XP : {{ recette[5] }}
+            <p>⏱️ {{recette[2]}} | 🎚️ {{recette[3]}} </p>
+            <p>XP : {{ recette[5] }}</p>
             <form action="{{ url_for('recipes.supprime_recette', id=recette[0]) }}">
                 <button type="submit">🗑️</button>
             </form>
-        </li>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
 <p>Pas de recettes pour le moment</p>
 {% endif %}

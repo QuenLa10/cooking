@@ -28,5 +28,6 @@ VALUES  ("Très Facile"),
         ("Très Difficile");
 
 INSERT OR IGNORE INTO recettes(titre, temps, id_difficulte, id_auteur, recompense_xp)
-VALUES  ("Lasagnes","40",(SELECT id FROM difficultes WHERE nom = "Avancé"),(SELECT id FROM utilisateurs WHERE identifiant = "Quentin"),20);
+VALUES  ("Lasagnes","40",(SELECT id FROM difficultes WHERE nom = "Avancé"),(SELECT id FROM utilisateurs WHERE identifiant = "Quentin"),20),
+        ("Crêpes","20",(SELECT id FROM difficultes WHERE nom = "Facile"),(SELECT id FROM utilisateurs WHERE identifiant = "Léonie"),10);
 
