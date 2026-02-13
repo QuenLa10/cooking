@@ -15,7 +15,7 @@
         {% for def in difficultes %}
             <option value="{{ def[0] }}" >{{ def[1] }}</option>
         {% endfor %}
-        </select><br>
+    </select><br>
     Recette : <br>
     <div id="etapes">
         <div id="etape">
@@ -28,7 +28,12 @@
         + Ajouter une étape
     </button>
     <br>
-    Ingrédients
+    Ingrédients : 
+    <select name="id_ingredient">
+        {% for i in ingredients %}
+            <option value="{{ i[0] }}" >{{ i[1] }}</option>
+        {% endfor %}
+    </select><br>
     Recompense : <input type="number" name="recompense_xp" required><br>
 
     <br>

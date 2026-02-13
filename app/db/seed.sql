@@ -1,6 +1,6 @@
 INSERT OR IGNORE INTO utilisateurs(identifiant, email, mdp_hash, xp, niveau, est_admin, est_banni)
 VALUES  ("Quentin","quentin.dazy@telecomnancy.net","hash1",500,2,1,0),
-        ("Léonie","leonie.ferrier@telecomnancy.net","hash2",350,1,1,0);
+        ("Léonie2","leonie.ferrier@telecomnancy.net","hash2",350,1,1,0);
 
 
 INSERT OR IGNORE INTO saisons(nom) 

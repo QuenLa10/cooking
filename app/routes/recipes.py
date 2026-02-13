@@ -32,11 +32,14 @@ def affiche_recette(id):
 @admin_required
 def ajout_recettes():
 
-    # On récupère les choix de difficulté possibles (et leurs id)
+    # On récupère les choix de difficulté, d'ingrédients
     base = get_db()
     cur = base.cursor()
     cur.execute("SELECT * FROM difficultes;")
     difficultes = cur.fetchall()
+    cur.execute("SELECT * FROM ingredients")
+    ingredients = cur.fecthall()
+
 
     # Formulaire pour rentrer les données
     if request.method == "POST":
@@ -65,7 +68,7 @@ def ajout_recettes():
 
         return redirect(url_for("liste_recettes"))
 
-    return render_template("ajout_recette.html", difficultes=difficultes)
+    return render_template("ajout_recette.html", difficultes=difficultes, ingredients=ingredients)
 
 @recipes_bp.route("/update_recipe/<int:id>", methods=["POST", "GET"])
 @admin_required

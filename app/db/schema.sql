@@ -63,7 +63,7 @@ CREATE TABLE recettes (
 CREATE TABLE recettes_ingredients (
         id_recette INT,
         id_ingredient INT,
-        quantite TEXT,
+        quantite TEXT DEFAULT 1,
         PRIMARY KEY (id_recette, id_ingredient),
         FOREIGN KEY (id_recette) REFERENCES recettes(id),
         FOREIGN KEY (id_ingredient) REFERENCES ingredients(id)
