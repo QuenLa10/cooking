@@ -23,12 +23,16 @@ def create_app():
     from .routes.auth import auth_bp
     from .routes.recipes import recipes_bp
     from .routes.profile import profile_bp
+    from .routes.ingredients import ingredients_bp
+    from .routes.ustensiles import ustensiles_bp
     
     # ajoute les routes à l'app
     app.register_blueprint(index_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(recipes_bp)
     app.register_blueprint(profile_bp)
+    app.register_blueprint(ingredients_bp)
+    app.register_blueprint(ustensiles_bp)
 
 
     return app

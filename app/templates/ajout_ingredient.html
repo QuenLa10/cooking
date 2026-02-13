@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+
+<h2>Formulaire pour ajouter un ingrédient :</h2>
+
+<form method="POST">
+
+    Nom : <input type="text" name="nom" required><br>
+    Saison :
+    <select name="id_saison" multiple>
+        {% for s in saisons %}
+            <option value="{{ s[0] }}" >{{ s[1] }}</option>
+        {% endfor %}
+    </select><br>
+
+    <button type="submit">Ajouter</button>
+
+</form>
+
+{% endblock %}

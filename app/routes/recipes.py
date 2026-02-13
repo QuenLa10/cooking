@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from datetime import datetime
 from app.database import get_db
 from app.routes.decorator import login_required, admin_required
@@ -44,9 +44,12 @@ def ajout_recettes():
         temps = request.form["temps"]
         etapes = request.form.getlist("etapes[]")
         id_difficulte = request.form["id_difficulte"]
-        id_auteur = 1 #A MODIFIER : sélectionner l'id du compte connecté
         recompense_xp = request.form["recompense_xp"]
         date_creation = datetime.today().strftime("%Y-%m-%d")
+        # Pour l'auteur, on va récupérer l'id de la personne connectée
+        identifiant = session.get('identifiant')
+        cur.execute("SELECT id FROM utilisateurs WHERE identifiant = ?", (identifiant,))
+        id_auteur = cur.fetchone()[0]
 
         # Ajout des données de la recette à la DB
         cur.execute("""INSERT INTO recettes (titre, temps, id_difficulte, id_auteur, recompense_xp, date_creation)

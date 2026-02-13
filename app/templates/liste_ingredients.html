@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+<h2>Liste des ingrédients</h2>
+
+{% if ingredients %}
+    <div class="liste-ingredients">
+    {% for ingredient in ingredients %}
+        <div class="liste-ingredient">
+            <p>{{ ingredient[1] }}</p>
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+<p>Pas d'ingrédient pour le moment</p>
+{% endif %}
+
+<br>
+<form action="/add_ingredient">
+    <button type="submit">+ Ajouter un ingrédient</button>
+</form>
+<br>
+
+{% endblock %}
