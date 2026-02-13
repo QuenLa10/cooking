@@ -1,3 +1,5 @@
+# Brainstorm initial
+
 ## Idées critères de recherche :
 - ingrédients
 - mode de cuisson
@@ -27,3 +29,57 @@
 	1 page avec NOS recettes / A page avec les recettes créées par les gens
 - substitut à un ingrédient
 - recette événement (ex: Halloween, Noël, ...)
+
+
+# Recipe Card Modal
+
+## Idée 
+
+Quand on clique sur une recette :
+- Fond légèrement assombri
+- Carte centrée
+- Animation douce
+- Bouton "Ouvrir la recette"
+
+## Structure interne
+
+----------------------------------------
+    Pizza Margherita      ✕          icône de rareté
+
+	[ Image pixel 128x128 ]
+
+  Difficulté : 
+  Temps : 20 min
+  XP : +10
+
+  Petite description :
+  "Un classique étudiant simple et rapide."
+
+  Ingrédients clés :
+  • Mozzarella
+  • Tomates
+  • Basilic
+
+	[ Ouvrir la recette ]
+----------------------------------------
+
+## DA précise
+
+### Carte 
+- Couleur vert sauge très clair
+- Bordure brun bois
+- Coins légèrement arrondis
+- Ombre douce
+### Fond quand il y a la carte
+- Overlay beige semi-transparent
+- Flou léger 
+- Pas trop sombre
+## Interactions
+
+- La carte apparaît avec :
+	- petite montée
+	- fade-in
+- Bouton avec effet lorsqu'on appuie
+- Quand on clique sur x :
+	- fade-out
+	- retour aux recettes
