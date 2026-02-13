@@ -28,4 +28,28 @@
     <button type="submit">+ Ajouter une recette</button>
 </form>
 
+{% if recettes %}
+    <div class="cartes-recettes">
+    {% for recette in recettes %}
+        <div class="carte-recette"
+            onclick="openModal({
+                title :
+
+
+
+
+            })">
+            
+        </div>
+
+    </div>
+{% else %}
+<p>Pas de recettes pour le moment</p>
+{% endif %}
+
+
+
+
+
+
 {% endblock %}
