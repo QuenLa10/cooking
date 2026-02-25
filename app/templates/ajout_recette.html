@@ -35,7 +35,11 @@
         {% endfor %}
     </select><br>
     Ustensiles :
-    <br>
+    <select name="id_ustensile">
+        {% for u in ustensiles %}
+            <option value="{{ u[0] }}" >{{ u[1] }}</option>
+        {% endfor %}
+    </select><br>
     Recompense : <input type="number" name="recompense_xp" required><br>
 
     <br>

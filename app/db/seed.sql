@@ -20,6 +20,9 @@ VALUES  ("Pomme",(SELECT id FROM saisons WHERE nom = "Automne")),
         ("Pastèque",(SELECT id FROM saisons WHERE nom = "Été")),
         ("Melon",(SELECT id FROM saisons WHERE nom = "Été"));
 
+INSERT OR IGNORE INTO ustensiles(nom) 
+VALUES  ("Four"), ("Mixeur"), ("Fouet"), ("Poêle");
+
 INSERT OR IGNORE INTO difficultes(nom)
 VALUES  ("Très Facile"),
         ("Facile"),

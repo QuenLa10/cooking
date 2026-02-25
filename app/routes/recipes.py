@@ -38,7 +38,7 @@ def ajout_recettes():
     cur.execute("SELECT * FROM difficultes;")
     difficultes = cur.fetchall()
     cur.execute("SELECT * FROM ingredients")
-    ingredients = cur.fecthall()
+    ingredients = cur.fetchall()
     cur.execute("SELECT * FROM ustensiles")
     ustensiles = cur.fetchall()
 
