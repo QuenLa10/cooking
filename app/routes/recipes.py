@@ -32,13 +32,15 @@ def affiche_recette(id):
 @admin_required
 def ajout_recettes():
 
-    # On récupère les choix de difficulté, d'ingrédients
+    # On récupère les choix de difficulté, d'ingrédients et d'ustensiles
     base = get_db()
     cur = base.cursor()
     cur.execute("SELECT * FROM difficultes;")
     difficultes = cur.fetchall()
     cur.execute("SELECT * FROM ingredients")
     ingredients = cur.fecthall()
+    cur.execute("SELECT * FROM ustensiles")
+    ustensiles = cur.fetchall()
 
 
     # Formulaire pour rentrer les données
@@ -68,13 +70,31 @@ def ajout_recettes():
 
         return redirect(url_for("liste_recettes"))
 
-    return render_template("ajout_recette.html", difficultes=difficultes, ingredients=ingredients)
+    return render_template("ajout_recette.html", difficultes=difficultes, ingredients=ingredients, ustensiles=ustensiles)
 
 @recipes_bp.route("/update_recipe/<int:id>", methods=["POST", "GET"])
 @admin_required
 def modif_recette(id):
-    # à faire
-    return render_template("modif_recette.html")
+    
+    # On récupère les choix de difficulté, d'ingrédients
+    base = get_db()
+    cur = base.cursor()
+    cur.execute("SELECT * FROM difficultes;")
+    difficultes = cur.fetchall()
+    cur.execute("SELECT * FROM ingredients")
+    ingredients = cur.fecthall()
+
+    # On récupère toutes les données actuelles (données de la recettes, étapes, ingrédients)
+    cur.execute("SELECT titre, id_difficulte, id_auteur, recompense_xp, FROM recettes WHERE id = ?", (id,))
+    donnes_recette = cur.fetchone()[0]
+    cur.execute("SELECT id_ingredient, quantite FROM recettes_ingredients WHERE id_recette = ?", (id,))
+    ingredients_recette = cur.fetchall()
+    cur.execute("SELECT id_ustensile FROM ustensiles_recettes WHERE id_recette = ?", (id,))
+    ustensiles_recette = cur.fetchall()
+    cur.execute("SELECT id, numero, description FROM etapes WHERE id_recette = ?", (id,))
+    etapes_recette = cur.fetchall()
+
+    return render_template("modif_recette.html", donnes_recette=donnes_recette, ingredients_recette=ingredients_recette, ustensiles_recette= ustensiles_recette, etapes_recette=etapes_recette)
 
 @recipes_bp.route("/delete_recipe/<int:id>")
 @admin_required
